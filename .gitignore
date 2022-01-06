@@ -1,0 +1,8 @@
+# Vim swap and backup files. 
+.backup/
+*.swp
+*~
+
+# Directory for personal stuff.
+private/
+
