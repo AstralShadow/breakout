@@ -14,10 +14,10 @@ export function Engine(ctx)
 	this.player = new Player(this)
 	this.entities = [this.player]
 
-	for(let i = 0; i < 1; i++)
+	for(let i = 0; i < 10; i++)
 	{
-		let pos = new Point(this.ctx.canvas.width / 2,
-							this.ctx.canvas.height - 20)
+		let pos = new Point(this.ctx.canvas.width / 2 + Math.random() * 500 - 250,
+							this.ctx.canvas.height - 20 - Math.random() * 500)
 		let velocity = new Vector()
 		velocity.direction = Math.PI + Math.floor(Math.random() * 16) / 16 * Math.PI
 		velocity.distance = 0.2

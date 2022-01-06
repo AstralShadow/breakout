@@ -29,8 +29,9 @@ Entity.prototype.contains = function(point){
 	return false
 }
 
+// vec and pos act as passed by reference
 Entity.prototype.reflectVector = function(vec, pos)
 {
-	return vec
+
 }
 

@@ -91,14 +91,23 @@ Player.prototype.contains = function(point)
 {
 	if(this.pos.x > point.x) return false;
 	if(this.pos.y > point.y) return false;
-	if(this.pos.x + this.w < ponit.x) return false;
-	if(this.pos.y + this.h < ponit.y) return false;
+	if(this.pos.x + this.w < point.x) return false;
+	if(this.pos.y + this.h < point.y) return false;
 	return true;
 }
 
 Player.prototype.reflectVector = function(vel, pos)
 {
-	if(this.contains(pos))
-		vel.y = -Math.abs(vel.y)
-	return vel
+	if(!this.contains(pos)) return;
+
+    vel.y = -Math.abs(vel.y)
+
+    if(pos.y > this.pos.y){
+        pos.y = this.pos.y
+    }
+
+    if(this.velocity.x != 0)
+        vel.x = (vel.x * 2 + this.velocity.x / 4) / 3
+    if(this.velocity.y != 0)
+    vel.y = (vel.y * 2 + this.velocity.y / 4) / 3
 }
