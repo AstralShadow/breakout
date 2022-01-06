@@ -62,11 +62,19 @@ Ball.prototype.reflectVector = function(vel, pos)
 
     if(distance_later > distance_now) return;
 
-    const original = vel.copy()
+    const vel_copy = vel.copy()
+    const this_vel_copy = this.velocity.copy()
     vel.direction = this.velocity.direction
-    vel.distance = this.velocity.distance
 
-    this.velocity.direction = original.direction
-    this.velocity.distance = original.distance
+    this.velocity.direction = vel_copy.direction
 
+    vel_copy.distance *= 0.1
+    this_vel_copy.distance *= 0.1
+    
+    const this_original_distance = this.velocity.distance
+    this.velocity.add(this_vel_copy)
+    this.velocity.distance = this_original_distance
+    const vel_original_distance = vel.distance
+    vel.add(vel_copy)
+    vel.distance = vel_original_distance
 }
