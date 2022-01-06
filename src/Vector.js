@@ -38,4 +38,5 @@ Vector.prototype.add = function(other)
 {
 	this.x += other.x
 	this.y += other.y
+    return this
 }

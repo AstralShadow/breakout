@@ -10,3 +10,15 @@ Point.prototype.distance = function(p)
 {
 	return Math.hypot(p.x - this.x, p.y - this.y)
 }
+
+Point.prototype.copy = function()
+{
+    return new Point(this.x, this.y)
+}
+
+Point.prototype.add = function(other)
+{
+    this.x += other.x
+    this.y += other.y
+    return this
+}
