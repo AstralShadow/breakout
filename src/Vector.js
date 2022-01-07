@@ -31,12 +31,25 @@ export function Vector(direction, distance)
 
 Vector.prototype.copy = function()
 {
+    "use strict"
+
 	return new Vector(this.direction, this.distance)
 }
 
 Vector.prototype.add = function(other)
 {
+    "use strict"
+
 	this.x += other.x
 	this.y += other.y
+    return this
+}
+
+Vector.prototype.substract = function(other)
+{
+    "use strict"
+
+    this.x -= other.x
+    this.y -= other.y
     return this
 }
