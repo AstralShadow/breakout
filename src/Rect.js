@@ -5,7 +5,7 @@ export function Rect(pos, w, h)
     "use strict"
     this.pos = pos ?? new Point()
     this.w = w ?? 0
-    this.h = w ?? 0
+    this.h = h ?? 0
 
     Object.defineProperty(this, "width", {
         get: () => this.w,

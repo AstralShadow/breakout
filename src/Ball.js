@@ -40,8 +40,8 @@ Ball.prototype.tick = function(progress)
         if(e == this) return;
         if(!e.contains(this.pos)) return;
         if(e instanceof Ball && i > index) return;
-        
-        e.reflectVector(this.velocity, this.pos)
+
+        e.reflectVector(this.velocity, this.pos, this.size, progress)
     })
 }
 
