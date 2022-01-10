@@ -1,38 +1,14 @@
 import { Entity } from "./Entity.js"
 import { Vector } from "./Vector.js"
 import { Point } from "./Point.js"
+import { wasd_velocity } from "./Controls/wasd.js"
 
 const proto = Entity.prototype
-const wasd_movement = new Vector()
-const wasd_pressed = [0, 0, 0, 0] // w, a, s, d
-const wasd_keys = [[87, 38], [65, 37], [83, 40], [68, 39]]
-const calculate_wasd_movement = () =>
-{
-	wasd_movement.x = 0
-	wasd_movement.y = 0
-
-	if(wasd_pressed[0]) wasd_movement.y--
-	if(wasd_pressed[1]) wasd_movement.x--
-	if(wasd_pressed[2]) wasd_movement.y++
-	if(wasd_pressed[3]) wasd_movement.x++
-}
-
-["keyup", "keydown"].forEach(w =>
-    document.addEventListener(w, (e) =>
-    {
-        for(let i = 0; i < 4; i++)
-            if(wasd_keys[i].indexOf(e.keyCode) != -1)
-                wasd_pressed[i] = (w == "keydown")
-
-        calculate_wasd_movement()
-        e.preventDefault()
-    })
-)
 
 export function Player(engine, pos)
 {
 	"use strict"
-	Entity.call(this, engine, pos ?? new Point(engine.w / 2 - 40, engine.h - 20), wasd_movement)
+	Entity.call(this, engine, pos ?? new Point(engine.w / 2 - 40, engine.h - 20), wasd_velocity)
 
 	this.w = 80
 	this.h = 10

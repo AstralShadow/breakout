@@ -80,7 +80,6 @@ Brick.prototype.reflectVector = function(vec, pos, radius, progress)
     const old_pos = pos.copy().substract(vec2)
     var hit_flag = false
 
-    console.log(x, y, w, h, "pos", pos.x, pos.y, "old_pos", old_pos.x, old_pos.y)
     if ((pos.x > x && old_pos.x < x) ||
         (pos.x < x + w && old_pos.x > x + w))
     {
