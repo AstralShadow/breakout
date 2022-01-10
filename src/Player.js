@@ -5,6 +5,7 @@ import { Point } from "./Point.js"
 const proto = Entity.prototype
 const wasd_movement = new Vector()
 const wasd_pressed = [0, 0, 0, 0] // w, a, s, d
+const wasd_keys = [[87, 38], [65, 37], [83, 40], [68, 39]]
 const calculate_wasd_movement = () =>
 {
 	wasd_movement.x = 0
@@ -16,45 +17,17 @@ const calculate_wasd_movement = () =>
 	if(wasd_pressed[3]) wasd_movement.x++
 }
 
-document.addEventListener("keydown", (e) =>
-{
-	switch(e.keyCode)
-	{
-		case 87: // w
-			wasd_pressed[0] = true
-			break;
-		case 65: // a
-			wasd_pressed[1] = true
-			break;
-		case 83: // s
-			wasd_pressed[2] = true
-			break;
-		case 68: // d
-			wasd_pressed[3] = true
-			break;
-	}
-	calculate_wasd_movement()
-})
+["keyup", "keydown"].forEach(w =>
+    document.addEventListener(w, (e) =>
+    {
+        for(let i = 0; i < 4; i++)
+            if(wasd_keys[i].indexOf(e.keyCode) != -1)
+                wasd_pressed[i] = (w == "keydown")
 
-document.addEventListener("keyup", (e) =>
-{
-	switch(e.keyCode)
-	{
-		case 87: // w
-			wasd_pressed[0] = false
-			break;
-		case 65: // a
-			wasd_pressed[1] = false
-			break;
-		case 83: // s
-			wasd_pressed[2] = false
-			break;
-		case 68: // d
-			wasd_pressed[3] = false
-			break;
-	}
-	calculate_wasd_movement()
-})
+        calculate_wasd_movement()
+        e.preventDefault()
+    })
+)
 
 export function Player(engine, pos)
 {
